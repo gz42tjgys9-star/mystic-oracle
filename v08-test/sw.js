@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'mystic-oracle-v08-2';
+const CACHE_NAME = 'mystic-oracle-v08-test-1';
 
 const CARD_NAMES = [
   '00_fool.png',
@@ -50,7 +50,7 @@ self.addEventListener('activate', event => {
         Promise.all(
           keys
             .filter(k =>
-              k.startsWith('mystic-oracle-') &&
+              k.startsWith('mystic-oracle-v08-test-') &&
               k !== CACHE_NAME
             )
             .map(k => caches.delete(k))

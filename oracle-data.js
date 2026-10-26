@@ -47,7 +47,7 @@ const oracleCards = [
     meaning: "絆の継続・大切な誓い",
     image: oracleCardImages[5]
   },
-    {
+  {
     id: 7,
     name: "夜明けの光",
     theme: "希望と光",

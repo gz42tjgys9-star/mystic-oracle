@@ -88,7 +88,50 @@ const oracleCards = [
     theme: "希望と光",
     meaning: "好機・思いがけない可能性",
     image: oracleCardImages[11]
+  },
+  {
+    id: 13,
+    name: "癒やしの泉",
+    theme: "癒やしと再生",
+    meaning: "休息・心の回復",
+    image: oracleCardImages[12]
+  },
+  {
+    id: 14,
+    name: "浄化の雨",
+    theme: "癒やしと再生",
+    meaning: "手放し・心の整理",
+    image: oracleCardImages[13]
+  },
+  {
+    id: 15,
+    name: "再生の花",
+    theme: "癒やしと再生",
+    meaning: "再出発・立ち直る力",
+    image: oracleCardImages[14]
+  },
+  {
+    id: 16,
+    name: "静寂の森",
+    theme: "癒やしと再生",
+    meaning: "安らぎ・内面の調和",
+    image: oracleCardImages[15]
+  },
+  {
+    id: 17,
+    name: "許しの光",
+    theme: "癒やしと再生",
+    meaning: "許し・過去からの解放",
+    image: oracleCardImages[16]
+  },
+  {
+    id: 18,
+    name: "生命の息吹",
+    theme: "癒やしと再生",
+    meaning: "活力・回復・成長",
+    image: oracleCardImages[17]
   }
 ];
+
 
   

@@ -46,6 +46,49 @@ const oracleCards = [
     theme: "愛と絆",
     meaning: "絆の継続・大切な誓い",
     image: oracleCardImages[5]
+  },
+    {
+    id: 7,
+    name: "夜明けの光",
+    theme: "希望と光",
+    meaning: "新しい始まり・可能性",
+    image: oracleCardImages[6]
+  },
+  {
+    id: 8,
+    name: "希望の星",
+    theme: "希望と光",
+    meaning: "希望・未来への信頼",
+    image: oracleCardImages[7]
+  },
+  {
+    id: 9,
+    name: "祝福の翼",
+    theme: "希望と光",
+    meaning: "幸運・祝福・支援",
+    image: oracleCardImages[8]
+  },
+  {
+    id: 10,
+    name: "輝く未来",
+    theme: "希望と光",
+    meaning: "成功・発展・前進",
+    image: oracleCardImages[9]
+  },
+  {
+    id: 11,
+    name: "勇気の炎",
+    theme: "希望と光",
+    meaning: "挑戦・勇気・行動",
+    image: oracleCardImages[10]
+  },
+  {
+    id: 12,
+    name: "奇跡の扉",
+    theme: "希望と光",
+    meaning: "好機・思いがけない可能性",
+    image: oracleCardImages[11]
   }
 ];
+
   

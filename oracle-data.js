@@ -172,8 +172,51 @@ const oracleCards = [
     theme: "運命と転機",
     meaning: "未知の可能性・発見",
     image: oracleCardImages[23]
+  },
+  {
+    id: 25,
+    name: "内なる声",
+    theme: "知恵と導き",
+    meaning: "直感・自己理解",
+    image: oracleCardImages[24]
+  },
+  {
+    id: 26,
+    name: "真実の鏡",
+    theme: "知恵と導き",
+    meaning: "気づき・本質を見つめる",
+    image: oracleCardImages[25]
+  },
+  {
+    id: 27,
+    name: "叡智の書",
+    theme: "知恵と導き",
+    meaning: "学び・知識・洞察",
+    image: oracleCardImages[26]
+  },
+  {
+    id: 28,
+    name: "導きの灯火",
+    theme: "知恵と導き",
+    meaning: "助言・進む方向",
+    image: oracleCardImages[27]
+  },
+  {
+    id: 29,
+    name: "沈黙の賢者",
+    theme: "知恵と導き",
+    meaning: "熟考・内省・観察",
+    image: oracleCardImages[28]
+  },
+  {
+    id: 30,
+    name: "魂の羅針盤",
+    theme: "知恵と導き",
+    meaning: "自分の価値観・人生の指針",
+    image: oracleCardImages[29]
   }
 ];
+
 
 
   

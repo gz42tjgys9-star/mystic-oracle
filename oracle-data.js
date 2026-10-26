@@ -214,8 +214,51 @@ const oracleCards = [
     theme: "知恵と導き",
     meaning: "自分の価値観・人生の指針",
     image: oracleCardImages[29]
+  },
+  {
+    id: 31,
+    name: "月の女神",
+    theme: "魂と宇宙",
+    meaning: "感受性・心のリズム",
+    image: oracleCardImages[30]
+  },
+  {
+    id: 32,
+    name: "星々の祝福",
+    theme: "魂と宇宙",
+    meaning: "つながり・宇宙の調和",
+    image: oracleCardImages[31]
+  },
+  {
+    id: 33,
+    name: "魂の記憶",
+    theme: "魂と宇宙",
+    meaning: "経験・深い気づき",
+    image: oracleCardImages[32]
+  },
+  {
+    id: 34,
+    name: "銀河の扉",
+    theme: "魂と宇宙",
+    meaning: "視野の拡大・未知への探求",
+    image: oracleCardImages[33]
+  },
+  {
+    id: 35,
+    name: "永遠の光",
+    theme: "魂と宇宙",
+    meaning: "普遍的な希望・心の支え",
+    image: oracleCardImages[34]
+  },
+  {
+    id: 36,
+    name: "宇宙の調和",
+    theme: "魂と宇宙",
+    meaning: "統合・均衡・全体とのつながり",
+    image: oracleCardImages[35]
   }
 ];
+
 
 
 

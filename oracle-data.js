@@ -130,6 +130,48 @@ const oracleCards = [
     theme: "癒やしと再生",
     meaning: "活力・回復・成長",
     image: oracleCardImages[17]
+  },
+  {
+    id: 19,
+    name: "運命の輪",
+    theme: "運命と転機",
+    meaning: "変化・人生の巡り",
+    image: oracleCardImages[18]
+  },
+  {
+    id: 20,
+    name: "選択の門",
+    theme: "運命と転機",
+    meaning: "決断・自分の意思",
+    image: oracleCardImages[19]
+  },
+  {
+    id: 21,
+    name: "旅立ちの風",
+    theme: "運命と転機",
+    meaning: "出発・新しい道",
+    image: oracleCardImages[20]
+  },
+  {
+    id: 22,
+    name: "変容の蝶",
+    theme: "運命と転機",
+    meaning: "変化・自己変革",
+    image: oracleCardImages[21]
+  },
+  {
+    id: 23,
+    name: "時の導き",
+    theme: "運命と転機",
+    meaning: "適切な時期・忍耐",
+    image: oracleCardImages[22]
+  },
+  {
+    id: 24,
+    name: "未知への鍵",
+    theme: "運命と転機",
+    meaning: "未知の可能性・発見",
+    image: oracleCardImages[23]
   }
 ];
 

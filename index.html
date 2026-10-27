@@ -191,19 +191,48 @@ frame.classList.remove('turning');
 frame.classList.add('arriving');
 await wait(reduced?50:550);
   }else{
-   resetSpread();const shuffled=[...cards];for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]]}
-   const spread=shuffled.slice(0,3).map(card=>({card,reversed:Math.random()<.5}));
-   $('status').textContent='✧ 22枚のカードをシャッフルしています…';button.textContent='シャッフル中…';await wait(reduced?100:1100);
+   resetSpread();
+const isOracle = currentFortuneMode === 'oracle';
+const deck = isOracle ? oracleCards : cards;
+const shuffled = [...deck];
+for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]]}
+const spread=shuffled.slice(0,3).map(card=>({card,reversed:!isOracle && Math.random()<.5}));
+  $('status').textContent=isOracle?'✧ 36枚のオラクルカードをシャッフルしています…':'✧ 22枚のカードをシャッフルしています…';button.textContent='シャッフル中…';await wait(reduced?100:1100);
    const resultItems=$('threeResultItems');resultItems.replaceChildren();
    for(let i=0;i<3;i++){
     const {card,reversed}=spread[i],slot=$('spread'+i);
     $('status').textContent='✦ '+['過去','現在','未来'][i]+'のカードをめくっています…';button.textContent='カードをめくっています…';
     slot.classList.add('flipping');await wait(reduced?40:280);
-    const img=makeEl('img','');img.src='images/'+cardImages[card.number];img.alt=card.name+'（'+(reversed?'逆位置':'正位置')+'）';if(reversed)img.style.transform='rotate(180deg)';slot.replaceChildren(img);slot.classList.remove('flipping');slot.classList.add('shown');$('spreadName'+i).textContent=card.name+'・'+(reversed?'逆位置':'正位置');
-    const block=makeEl('div','three-result-item');block.append(makeEl('h3','',['過去','現在','未来'][i]+'：'+card.name+' / '+card.en),makeEl('p','',reversed?'☾ 逆位置':'✦ 正位置'),makeEl('p','keywords','キーワード：'+(reversed?card.rev:card.up)),makeEl('p','',card.messages[selectedTopic]));resultItems.append(block);
+    const img=makeEl('img','');
+img.src=isOracle?card.image:'images/'+cardImages[card.number];
+img.alt=isOracle?card.name:card.name+'（'+(reversed?'逆位置':'正位置')+'）';
+if(reversed)img.style.transform='rotate(180deg)';
+slot.replaceChildren(img);
+slot.classList.remove('flipping');
+slot.classList.add('shown');
+$('spreadName'+i).textContent=isOracle?card.name:card.name+'・'+(reversed?'逆位置':'正位置');
+   const block=makeEl('div','three-result-item');
+if(isOracle){
+  block.append(
+    makeEl('h3','',['過去','現在','未来'][i]+'：'+card.name),
+    makeEl('p','keywords','テーマ：'+card.theme),
+    makeEl('p','',card.meaning)
+  );
+}else{
+  block.append(
+    makeEl('h3','',['過去','現在','未来'][i]+'：'+card.name+' / '+card.en),
+    makeEl('p','',reversed?'☾ 逆位置':'✦ 正位置'),
+    makeEl('p','keywords','キーワード：'+(reversed?card.rev:card.up)),
+    makeEl('p','',card.messages[selectedTopic])
+  );
+}
+resultItems.append(block);
     await wait(reduced?40:350);
    }
-   $('threeResult').hidden=false;addThreeHistory(spread,selectedTopic);
+  $('threeResult').hidden=false;
+if(!isOracle){
+  addThreeHistory(spread,selectedTopic);
+}
   }
   $('status').textContent='✦ カードがあなたにメッセージを届けました';
  }catch(error){console.error(error);$('status').textContent='表示中に問題が起きました。もう一度お試しください。';}

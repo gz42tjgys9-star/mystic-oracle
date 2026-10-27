@@ -74,7 +74,14 @@
 }</style></head><body><main class="shell"><div class="top" aria-hidden="true">☾ ✦ ☽</div><h1>Mystic Oracle</h1><p class="sub">月夜のタロット — 大アルカナ22枚</p><div class="fortune-switch" role="group" aria-label="占いの種類を選択">
   <button type="button" id="tarotMode" class="active" aria-pressed="true">☾ タロット占い</button>
   <button type="button" id="oracleMode" aria-pressed="false">✦ オラクル占い</button>
-</div><span class="label">占いたいテーマを選んでください</span><div class="topics" role="group" aria-label="占いのテーマ"><button type="button" data-topic="general" class="active" aria-pressed="true">総合運</button><button type="button" data-topic="love" aria-pressed="false">恋愛運</button><button type="button" data-topic="work" aria-pressed="false">仕事運</button></div><div class="mode-picker" role="group" aria-label="カードの引き方"><button type="button" data-mode="one" class="active" aria-pressed="true">✦ 1枚引き</button><button type="button" data-mode="three" aria-pressed="false">✧ 3枚引き</button></div><section class="daily-entry" aria-label="今日の運勢"><button class="daily-toggle" type="button" id="dailyToggle" aria-expanded="false" aria-controls="dailyPanel">☀ 今日の運勢を開く</button><div class="daily-panel" id="dailyPanel" hidden><h2>☾ 今日の運勢 ☽</h2><p class="daily-date" id="dailyDate"></p><div class="daily-card" id="dailyCard" hidden></div><div class="daily-reading" id="dailyReading" hidden></div><button class="primary" type="button" id="dailyDraw">✦ 今日のカードを引く</button><p class="daily-note" id="dailyNote">今日のカードは1日1枚。総合運・恋愛運・仕事運を同じカードで確認できます。</p></div></section><div class="stage" id="stage"><div class="deck" id="deck" aria-hidden="true"><div class="deck-card">☾</div><div class="deck-card">✧</div><div class="deck-card">☽</div></div><div class="tarot" id="tarot" aria-label="タロットカード"><div class="inner"><div class="stars">✦ ✧ ✦</div><div class="sigil"><span class="glyph" id="glyph">☽</span></div><div><div class="card-id" id="cardId">MYSTIC ORACLE</div><div class="card-name" id="cardName">月の扉</div></div></div><img class="card-art" id="cardArt" alt="" width="220" height="340" hidden></div></div><div class="three-stage" id="threeStage" hidden aria-label="過去・現在・未来のカード"><div class="spread-slot"><p class="spread-label">過去</p><div class="spread-card" id="spread0">☾</div><p class="spread-card-name" id="spreadName0"></p></div><div class="spread-slot"><p class="spread-label">現在</p><div class="spread-card" id="spread1">✧</div><p class="spread-card-name" id="spreadName1"></p></div><div class="spread-slot"><p class="spread-label">未来</p><div class="spread-card" id="spread2">☽</div><p class="spread-card-name" id="spreadName2"></p></div></div><p class="card-caption" id="cardCaption">月の扉の向こうに、あなたのカードが待っています</p><p class="status" id="status" role="status" aria-live="polite">心を落ち着けて、カードを引いてください</p><button class="primary" type="button" id="draw">✦ カードを1枚引く</button><section class="result" id="result" aria-live="polite" hidden><h2 id="name"></h2><p class="orient" id="orientation"></p><div class="meaning" id="meaning"></div><p id="message"></p><p class="hint" id="hint"></p></section><section class="result" id="threeResult" aria-live="polite" hidden><h2>☾ 過去・現在・未来のメッセージ</h2><div class="three-result" id="threeResultItems"></div><p class="hint">未来は決まったものではありません。カードを自分の気持ちを整理するヒントにしてください。</p></section><section class="history" id="history" aria-label="鑑定履歴"><h2>☾ 鑑定履歴</h2><p class="storage-note" id="storageNote">鑑定結果はこのブラウザ内に保存されます。ブラウザのデータを削除すると履歴も消えます。</p><div class="history-actions"><button class="secondary" type="button" id="clearHistory">履歴をすべて削除</button></div><div id="historyList" class="history-list"></div><div id="historyDetail" class="history-detail" hidden></div></section><p class="foot">Ver.0.8 ｜ 大アルカナ22枚のオリジナルイラストを使用。<br>この占いは娯楽・自己理解のためのものです。未来や結果を保証しません。</p></main><script src="./oracle-data.js"></script><script>
+</div><span class="label">占いたいテーマを選んでください</span><div class="topics" role="group" aria-label="占いのテーマ"><button type="button" data-topic="general" class="active" aria-pressed="true">総合運</button><button type="button" data-topic="love" aria-pressed="false">恋愛運</button><button type="button" data-topic="work" aria-pressed="false">仕事運</button></div><div class="mode-picker" role="group" aria-label="カードの引き方"><button type="button" data-mode="one" class="active" aria-pressed="true">✦ 1枚引き</button><button type="button" data-mode="three" aria-pressed="false">✧ 3枚引き</button></div><section class="daily-entry" aria-label="今日の運勢"><button class="daily-toggle" type="button" id="dailyToggle" aria-expanded="false" aria-controls="dailyPanel">☀ 今日の運勢を開く</button><div class="daily-panel" id="dailyPanel" hidden><h2>☾ 今日の運勢 ☽</h2><p class="daily-date" id="dailyDate"></p><div class="daily-card" id="dailyCard" hidden></div><div class="daily-reading" id="dailyReading" hidden></div><button class="primary" type="button" id="dailyDraw">✦ 今日のカードを引く</button><p class="daily-note" id="dailyNote">今日のカードは1日1枚。総合運・恋愛運・仕事運を同じカードで確認できます。</p></div></section><div class="stage" id="stage"><div class="deck" id="deck" aria-hidden="true"><div class="deck-card">☾</div><div class="deck-card">✧</div><div class="deck-card">☽</div></div><div class="tarot" id="tarot" aria-label="タロットカード"><div class="inner"><div class="stars">✦ ✧ ✦</div><div class="sigil"><span class="glyph" id="glyph">☽</span></div><div><div class="card-id" id="cardId">MYSTIC ORACLE</div><div class="card-name" id="cardName">月の扉</div></div></div><img class="card-art" id="cardArt" alt="" width="220" height="340" hidden></div></div><div class="three-stage" id="threeStage" hidden aria-label="過去・現在・未来のカード"><div class="spread-slot"><p class="spread-label">過去</p><div class="spread-card" id="spread0">☾</div><p class="spread-card-name" id="spreadName0"></p></div><div class="spread-slot"><p class="spread-label">現在</p><div class="spread-card" id="spread1">✧</div><p class="spread-card-name" id="spreadName1"></p></div><div class="spread-slot"><p class="spread-label">未来</p><div class="spread-card" id="spread2">☽</div><p class="spread-card-name" id="spreadName2"></p></div></div><p class="card-caption" id="cardCaption">月の扉の向こうに、あなたのカードが待っています</p><p class="status" id="status" role="status" aria-live="polite">心を落ち着けて、カードを引いてください</p><button class="primary" type="button" id="draw">✦ カードを1枚引く</button><section class="result" id="result" aria-live="polite" hidden><h2 id="name"></h2><p class="orient" id="orientation"></p><div class="meaning" id="meaning"></div><p id="message"></p><p class="hint" id="hint"></p></section><section class="result" id="threeResult" aria-live="polite" hidden><h2>☾ 過去・現在・未来のメッセージ</h2><div class="three-result" id="threeResultItems"></div><p class="hint">未来は決まったものではありません。カードを自分の気持ちを整理するヒントにしてください。</p></section><section class="history" id="history" aria-label="鑑定履歴"><h2>☾ 鑑定履歴</h2><p class="storage-note" id="storageNote">鑑定結果はこのブラウザ内に保存されます。ブラウザのデータを削除すると履歴も消えます。</p><div class="history-actions">
+  <button class="secondary" type="button" id="clearHistory">履歴をすべて削除</button>
+  <button class="secondary" type="button" id="clearOracleHistory" hidden>オラクル履歴をすべて削除</button>
+</div><div id="historyList" class="history-list"></div>
+<div id="historyDetail" class="history-detail" hidden></div>
+<div id="oracleHistoryList" class="history-list" hidden></div>
+<div id="oracleHistoryDetail" class="history-detail" hidden></div>
+</section><p class="foot">Ver.0.8 ｜ 大アルカナ22枚のオリジナルイラストを使用。<br>この占いは娯楽・自己理解のためのものです。未来や結果を保証しません。</p></main><script src="./oracle-data.js"></script><script>
 let currentFortuneMode = "tarot";
 const tarotModeButton = document.getElementById("tarotMode");
 const oracleModeButton = document.getElementById("oracleMode");
@@ -85,6 +92,12 @@ function setFortuneMode(mode) {
   oracleModeButton.classList.toggle("active", !isTarot);
   tarotModeButton.setAttribute("aria-pressed", String(isTarot));
   oracleModeButton.setAttribute("aria-pressed", String(!isTarot));
+  document.getElementById('historyList').hidden = !isTarot;
+  document.getElementById('historyDetail').hidden = true;
+  document.getElementById('oracleHistoryList').hidden = isTarot;
+  document.getElementById('oracleHistoryDetail').hidden = true;
+  document.getElementById('clearHistory').hidden = !isTarot;
+  document.getElementById('clearOracleHistory').hidden = isTarot;
 }
 tarotModeButton.addEventListener("click", () => setFortuneMode("tarot"));
 oracleModeButton.addEventListener("click", () => setFortuneMode("oracle"));
@@ -96,12 +109,58 @@ let busy=false;
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const STORAGE_KEY='mystic_oracle_history_v05';
 const MAX_HISTORY=100;
+const ORACLE_HISTORY_KEY='mystic_oracle_oracle_history_v09';
+const MAX_ORACLE_HISTORY=100;
+let oracleHistoryEntries=[];
 let historyEntries=[];let storageAvailable=true;
 const topicLabels={general:'総合運',love:'恋愛運',work:'仕事運'};
 function readHistory(){try{const raw=localStorage.getItem(STORAGE_KEY);const parsed=raw?JSON.parse(raw):[];historyEntries=Array.isArray(parsed)?parsed.filter(x=>x&&typeof x.date==='string'&&typeof x.topic==='string'&&( (Number.isInteger(x.number)&&x.number>=0&&x.number<22&&typeof x.reversed==='boolean') || (Array.isArray(x.spread)&&x.spread.length===3&&x.spread.every(r=>Number.isInteger(r.number)&&r.number>=0&&r.number<22&&typeof r.reversed==='boolean')) )).slice(0,MAX_HISTORY):[];}catch(e){storageAvailable=false;historyEntries=[];showStorageWarning();}}
+function readOracleHistory(){
+ try{
+  const raw=localStorage.getItem(ORACLE_HISTORY_KEY);
+  const parsed=raw?JSON.parse(raw):[];
+  oracleHistoryEntries=Array.isArray(parsed)?parsed.filter(entry=>
+   entry&&typeof entry.id==='string'&&typeof entry.date==='string'&&
+   (entry.type==='single'&&Number.isInteger(entry.cardId)&&entry.cardId>=1&&entry.cardId<=36||
+    entry.type==='triple'&&Array.isArray(entry.cardIds)&&entry.cardIds.length===3&&entry.cardIds.every(id=>Number.isInteger(id)&&id>=1&&id<=36))
+  ).slice(0,MAX_ORACLE_HISTORY):[];
+ }catch(e){
+  oracleHistoryEntries=[];
+  showStorageWarning();
+ }
+}
 function showStorageWarning(){$('storageNote').textContent='このブラウザでは履歴を保存できません。占いは引き続き利用できます。';}
 function persistHistory(){if(!storageAvailable)return;try{localStorage.setItem(STORAGE_KEY,JSON.stringify(historyEntries));}catch(e){storageAvailable=false;showStorageWarning();}}
+function persistOracleHistory(){
+ try{
+  localStorage.setItem(ORACLE_HISTORY_KEY,JSON.stringify(oracleHistoryEntries));
+ }catch(e){
+  showStorageWarning();
+ }
+}
 function addHistory(c,reversed,selectedTopic){const entry={id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),date:new Date().toISOString(),number:c.number,reversed,topic:selectedTopic,message:c.messages[selectedTopic]};historyEntries.unshift(entry);historyEntries=historyEntries.slice(0,MAX_HISTORY);persistHistory();renderHistory();}
+function addOracleHistory(card){
+ const entry={
+  id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),
+  date:new Date().toISOString(),
+  type:'single',
+  cardId:card.id
+ };
+ oracleHistoryEntries.unshift(entry);
+ oracleHistoryEntries=oracleHistoryEntries.slice(0,MAX_ORACLE_HISTORY);
+ persistOracleHistory();
+}
+function addOracleThreeHistory(spread){
+ const entry={
+  id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),
+  date:new Date().toISOString(),
+  type:'triple',
+  cardIds:spread.map(item=>item.card.id)
+ };
+ oracleHistoryEntries.unshift(entry);
+ oracleHistoryEntries=oracleHistoryEntries.slice(0,MAX_ORACLE_HISTORY);
+ persistOracleHistory();
+}
 function makeEl(tag,cls,content){const el=document.createElement(tag);if(cls)el.className=cls;if(content!==undefined)el.textContent=content;return el;}
 function dateLabel(iso){const d=new Date(iso);return Number.isNaN(d.getTime())?'日時不明':d.toLocaleString('ja-JP',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});}
 function renderHistory(){
@@ -115,6 +174,102 @@ function renderHistory(){
   const btn=makeEl('button','secondary','詳細');btn.type='button';btn.addEventListener('click',()=>showHistoryDetail(entry.id));item.append(info,btn);list.append(item);
  });
 }
+function renderOracleHistory(){
+ const list=$('oracleHistoryList');
+ list.replaceChildren();
+ if(!oracleHistoryEntries.length){
+  list.append(makeEl('p','history-empty','まだオラクル鑑定履歴はありません。カードを引くとここに記録されます。'));
+  $('oracleHistoryDetail').hidden=true;
+  return;
+ }
+ oracleHistoryEntries.forEach(entry=>{
+  const item=makeEl('div','history-item');
+  const triple=entry.type==='triple';
+  const ids=triple?entry.cardIds:[entry.cardId];
+  const selectedCards=ids.map(id=>oracleCards.find(card=>card.id===id));
+  if(selectedCards.some(card=>!card))return;
+  if(triple){
+   const thumbs=makeEl('div','history-triple');
+   selectedCards.forEach(card=>{
+    const img=makeEl('img','');
+    img.src=card.image;
+    img.alt=card.name;
+    img.loading='lazy';
+    thumbs.append(img);
+   });
+   item.append(thumbs);
+  }else{
+   const img=makeEl('img','history-thumb');
+   img.src=selectedCards[0].image;
+   img.alt=selectedCards[0].name+'のオラクルカード';
+   img.loading='lazy';
+   item.append(img);
+  }
+  const info=makeEl('div','history-info');
+  info.append(
+   makeEl('div','history-date',dateLabel(entry.date)),
+   makeEl('div','history-name',triple?'オラクル3枚引き・過去／現在／未来':selectedCards[0].name),
+   makeEl('div','history-topic','オラクル占い')
+  );
+  const btn=makeEl('button','secondary','詳細');
+  btn.type='button';
+  btn.addEventListener('click',()=>showOracleHistoryDetail(entry.id));
+  item.append(info,btn);
+  list.append(item);
+ });
+}
+function showOracleHistoryDetail(id){
+ const entry=oracleHistoryEntries.find(item=>item.id===id);
+ if(!entry)return;
+ const detail=$('oracleHistoryDetail');
+ detail.replaceChildren();
+ const triple=entry.type==='triple';
+ const ids=triple?entry.cardIds:[entry.cardId];
+ const selectedCards=ids.map(cardId=>oracleCards.find(card=>card.id===cardId));
+ if(selectedCards.some(card=>!card))return;
+ detail.append(makeEl('h3','',triple?'✦ オラクル3枚引き':'✦ オラクル1枚引き'));
+ detail.append(makeEl('p','history-date',dateLabel(entry.date)));
+ if(triple){
+  const images=makeEl('div','detail-triple');
+  selectedCards.forEach(card=>{
+   const img=makeEl('img','');
+   img.src=card.image;
+   img.alt=card.name;
+   images.append(img);
+  });
+  detail.append(images);
+ }
+ selectedCards.forEach((card,i)=>{
+  const block=makeEl('div','detail-reading');
+  if(!triple){
+   const img=makeEl('img','');
+   img.src=card.image;
+   img.alt=card.name;
+   block.append(img);
+  }
+  block.append(
+   makeEl('h3','',(triple?['過去','現在','未来'][i]+'：':'')+card.name),
+   makeEl('p','','テーマ：'+card.theme),
+   makeEl('p','',card.meaning)
+  );
+  detail.append(block);
+ });
+ const close=makeEl('button','secondary','詳細を閉じる');
+ close.type='button';
+ close.addEventListener('click',()=>{detail.hidden=true;});
+ const del=makeEl('button','secondary','この履歴を削除');
+ del.type='button';
+ del.addEventListener('click',()=>{
+  if(!confirm('このオラクル鑑定履歴を削除しますか？'))return;
+  oracleHistoryEntries=oracleHistoryEntries.filter(item=>item.id!==id);
+  persistOracleHistory();
+  renderOracleHistory();
+  detail.hidden=true;
+ });
+ detail.append(close,document.createTextNode(' '),del);
+ detail.hidden=false;
+ detail.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
 function showHistoryDetail(id){
  const entry=historyEntries.find(x=>x.id===id);if(!entry)return;
  const detail=$('historyDetail');detail.replaceChildren();const triple=Array.isArray(entry.spread)&&entry.spread.length===3;
@@ -126,7 +281,18 @@ function showHistoryDetail(id){
  const close=makeEl('button','secondary','詳細を閉じる');close.type='button';close.addEventListener('click',()=>{detail.hidden=true});const del=makeEl('button','secondary','この履歴を削除');del.type='button';del.addEventListener('click',()=>{if(!confirm('この鑑定履歴を削除しますか？'))return;historyEntries=historyEntries.filter(x=>x.id!==id);persistHistory();renderHistory()});detail.append(close,document.createTextNode(' '),del);detail.hidden=false;detail.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 $('clearHistory').addEventListener('click',()=>{if(!historyEntries.length)return;if(!confirm('すべての鑑定履歴を削除しますか？この操作は取り消せません。'))return;historyEntries=[];persistHistory();renderHistory();});
-readHistory();renderHistory();
+$('clearOracleHistory').addEventListener('click',()=>{
+  if(!oracleHistoryEntries.length)return;
+  if(!confirm('オラクル鑑定履歴をすべて削除しますか？この操作は取り消せません。'))return;
+  oracleHistoryEntries=[];
+  persistOracleHistory();
+  renderOracleHistory();
+  $('oracleHistoryDetail').hidden=true;
+});
+readHistory();
+readOracleHistory();renderHistory();
+renderOracleHistory();
+setFortuneMode("tarot");
 function showReading(c,reversed){
  const frame=$('tarot'); frame.classList.toggle('reversed',reversed);
  $('glyph').textContent=c.symbol;
@@ -183,6 +349,8 @@ $('draw').addEventListener('click',async()=>{
   await wait(reduced?50:380);
 if(isOracle){
  showOracleReading(c);
+　addOracleHistory(c);
+  renderOracleHistory();
 }else{
  showReading(c,reversed);
  addHistory(c,reversed,selectedTopic);
@@ -229,9 +397,11 @@ if(isOracle){
 resultItems.append(block);
     await wait(reduced?40:350);
    }
-  $('threeResult').hidden=false;
 if(!isOracle){
   addThreeHistory(spread,selectedTopic);
+}else{
+  addOracleThreeHistory(spread);
+  renderOracleHistory();
 }
   }
   $('status').textContent='✦ カードがあなたにメッセージを届けました';

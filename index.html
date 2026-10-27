@@ -174,10 +174,22 @@ $('draw').addEventListener('click',async()=>{
  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  try{
   if(selectedMode==='one'){
-   frame.classList.remove('arriving','turning');const c=cards[Math.floor(Math.random()*cards.length)],reversed=Math.random()<.5;
+  frame.classList.remove('arriving','turning');
+　const isOracle = currentFortuneMode === 'oracle';
+　const deck = isOracle ? oracleCards : cards;
+　const c = deck[Math.floor(Math.random()*deck.length)], reversed = !isOracle && Math.random()<.5;
    $('status').textContent='✧ カードをシャッフルしています…';button.textContent='シャッフル中…';stage.classList.add('shuffling');
    await wait(reduced?100:1300);$('status').textContent='✦ あなたのカードを選びました';button.textContent='カードをめくっています…';stage.classList.remove('shuffling');frame.classList.add('turning');
-   await wait(reduced?50:380);showReading(c,reversed);addHistory(c,reversed,selectedTopic);frame.classList.remove('turning');frame.classList.add('arriving');await wait(reduced?50:550);
+  await wait(reduced?50:380);
+if(isOracle){
+ showOracleReading(c);
+}else{
+ showReading(c,reversed);
+ addHistory(c,reversed,selectedTopic);
+}
+frame.classList.remove('turning');
+frame.classList.add('arriving');
+await wait(reduced?50:550);
   }else{
    resetSpread();const shuffled=[...cards];for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]]}
    const spread=shuffled.slice(0,3).map(card=>({card,reversed:Math.random()<.5}));

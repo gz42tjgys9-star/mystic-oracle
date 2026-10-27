@@ -140,6 +140,25 @@ function showReading(c,reversed){
  $('hint').textContent=reversed?'逆位置のヒント：焦らず、いま必要な見直しや調整を意識してみましょう。':'正位置のヒント：カードが示す強みを、今日の小さな行動につなげてみましょう。';
  $('result').hidden=false;
 }
+function showOracleReading(c){
+ const frame=$('tarot');
+ frame.classList.remove('reversed');
+ $('glyph').textContent='✦';
+ const art=$('cardArt');
+ art.src=c.image;
+ art.alt=c.name+'のオラクルカード';
+ art.hidden=false;
+ frame.classList.add('has-art');
+ $('cardCaption').textContent='オラクルカード '+String(c.id).padStart(2,'0')+' · '+c.name;
+ $('cardId').textContent=String(c.id).padStart(2,'0')+' · ORACLE';
+ $('cardName').textContent=c.name;
+ $('name').textContent=c.name;
+ $('orientation').textContent='✦ オラクルからの導き';
+ $('meaning').textContent='テーマ：'+c.theme;
+ $('message').textContent=c.meaning;
+ $('hint').textContent='カードのメッセージを、今日のあなたへのヒントとして受け取ってください。';
+ $('result').hidden=false;
+}
 let mode='one';
 document.querySelectorAll('[data-mode]').forEach(button=>button.addEventListener('click',()=>{
  if(busy)return;mode=button.dataset.mode;document.querySelectorAll('[data-mode]').forEach(b=>{const active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});

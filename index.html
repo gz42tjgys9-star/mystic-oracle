@@ -404,6 +404,7 @@ if(!isOracle){
   renderOracleHistory();
 }
   }
+  if(selectedMode==='three') $('threeResult').hidden=false;
   $('status').textContent='✦ カードがあなたにメッセージを届けました';
  }catch(error){console.error(error);$('status').textContent='表示中に問題が起きました。もう一度お試しください。';}
  finally{stage.classList.remove('shuffling');frame.classList.remove('turning');button.textContent=selectedMode==='three'?'✧ もう一度3枚引く':'✦ もう一度カードを引く';button.disabled=false;busy=false;}

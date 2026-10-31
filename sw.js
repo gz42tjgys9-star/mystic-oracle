@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'mystic-oracle-v08-release-1';
+const CACHE_NAME = 'mystic-oracle-v09-release-1';
 
 const CARD_NAMES = [
   '00_fool.png',
@@ -29,10 +29,13 @@ const CARD_NAMES = [
 const OFFLINE_FILES = [
   './',
   './index.html',
+  './oracle-data.js',
   './manifest.webmanifest',
   './icon-192.png',
   './icon-512.png',
-  ...CARD_NAMES.map(name => './images/' + name)
+  ...CARD_NAMES.map(name => './images/' + name),
+  ...Array.from({ length: 36 }, (_, i) =>
+  './oracle-images/oracle-' + String(i + 1).padStart(2, '0') + '.png')
 ];
 
 self.addEventListener('install', event => {
@@ -50,7 +53,7 @@ self.addEventListener('activate', event => {
         Promise.all(
           keys
             .filter(k =>
-              k.startsWith('mystic-oracle-v08-release-') &&
+              k.startsWith('mystic-oracle-') &&
               k !== CACHE_NAME
             )
             .map(k => caches.delete(k))

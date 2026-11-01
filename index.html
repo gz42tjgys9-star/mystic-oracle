@@ -474,6 +474,7 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') {
 </script>
 <style>
 #backToTopBtn {
+  display: none;
   position: fixed;
   right: 16px;
   bottom: 20px;
@@ -489,4 +490,14 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') {
 }
 </style>
 <button id="backToTopBtn" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ トップへ戻る</button>
+<script>
+window.addEventListener("scroll", function () {
+  const button = document.getElementById("backToTopBtn");
+  if (window.scrollY > 200) {
+    button.style.display = "block";
+  } else {
+    button.style.display = "none";
+  }
+});
+</script>
 </body></html>

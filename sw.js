@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'mystic-oracle-v09-release-1';
+const CACHE_NAME = 'mystic-oracle-v10-release-1';
 
 const CARD_NAMES = [
   '00_fool.png',

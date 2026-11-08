@@ -182,6 +182,7 @@ cardImage.style.margin = "0 auto 10px";
 cardImage.style.borderRadius = "8px";
 
 const cardName = document.createElement("div");
+cardName.className = "card-guide-name";
 cardName.textContent = `${typeLabel}｜${card.name}`;
 cardName.style.textAlign = "center";
 cardName.style.fontWeight = "bold";
@@ -633,6 +634,21 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') {
   #cardGuideList {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
+/* Ver.1.1 カード図鑑：カード名と枠の高さを統一 */
+#cardGuideList .card-guide-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#cardGuideList .card-guide-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.6em;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 </style>
 <button id="backToTopBtn" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ トップへ戻る</button>

@@ -615,6 +615,25 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') {
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+  /* Ver.1.1 カード図鑑：レスポンシブレイアウト */
+#cardGuideList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+#cardGuideList .card-guide-item {
+  min-width: 0;
+  box-sizing: border-box;
+  margin-bottom: 0 !important;
+}
+
+@media (min-width: 900px) {
+  #cardGuideList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 </style>
 <button id="backToTopBtn" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ トップへ戻る</button>
 

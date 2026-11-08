@@ -169,7 +169,26 @@ function renderCardGuideList() {
     const typeLabel =
       card.type === "tarot" ? "タロット" : "オラクル";
 
-    item.textContent = `${typeLabel}｜${card.name}`;
+    
+const cardImage = document.createElement("img");
+cardImage.src = card.image;
+cardImage.alt = `${card.name}のカード画像`;
+cardImage.loading = "lazy";
+cardImage.style.display = "block";
+cardImage.style.width = "120px";
+cardImage.style.maxWidth = "100%";
+cardImage.style.height = "auto";
+cardImage.style.margin = "0 auto 10px";
+cardImage.style.borderRadius = "8px";
+
+const cardName = document.createElement("div");
+cardName.textContent = `${typeLabel}｜${card.name}`;
+cardName.style.textAlign = "center";
+cardName.style.fontWeight = "bold";
+
+item.appendChild(cardImage);
+item.appendChild(cardName);
+
     item.style.padding = "12px";
     item.style.marginBottom = "8px";
     item.style.border = "1px solid #8c72aa";

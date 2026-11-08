@@ -145,6 +145,42 @@ cardGuideClose.addEventListener("click", () => {
   cardGuideButton.focus();
 });
 
+/* Ver.1.1: Card Guide basic list */
+const cardGuideList = document.getElementById("cardGuideList");
+
+function renderCardGuideList() {
+  if (!cardGuideList) return;
+
+  cardGuideList.replaceChildren();
+
+  if (
+    typeof CARD_GUIDE_DATA === "undefined" ||
+    !Array.isArray(CARD_GUIDE_DATA)
+  ) {
+    cardGuideList.textContent =
+      "カード図鑑のデータを読み込めませんでした。";
+    return;
+  }
+
+  CARD_GUIDE_DATA.forEach((card) => {
+    const item = document.createElement("div");
+    item.className = "card-guide-item";
+
+    const typeLabel =
+      card.type === "tarot" ? "タロット" : "オラクル";
+
+    item.textContent = `${typeLabel}｜${card.name}`;
+    item.style.padding = "12px";
+    item.style.marginBottom = "8px";
+    item.style.border = "1px solid #8c72aa";
+    item.style.borderRadius = "10px";
+
+    cardGuideList.appendChild(item);
+  });
+}
+
+renderCardGuideList();
+
 function setFortuneMode(mode) {
   currentFortuneMode = mode;
   const isTarot = mode === "tarot";

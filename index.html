@@ -174,11 +174,45 @@ function renderCardGuideDetail(card) {
   const meaning = document.createElement("p");
   meaning.textContent = "カードの意味：" +
     (card.meaning || "未登録");
+  const symbolism = document.createElement("p");
+symbolism.textContent = "カードの象徴・絵柄の意味：" +
+  (card.symbolism || "未登録");
+  const readings = document.createElement("div");
+const readingData = card.readings || {};
 
+const readingTitle = document.createElement("h4");
+readingTitle.textContent = "鑑定テーマ別の解釈";
+readings.appendChild(readingTitle);
+
+const readingItems = [
+  ["総合運", readingData.general],
+  ["恋愛運", readingData.love],
+  ["仕事運", readingData.work]
+];
+
+readingItems.forEach(([label, description]) => {
+  const paragraph = document.createElement("p");
+  paragraph.textContent = label + "：" + (description || "未登録");
+  readings.appendChild(paragraph);
+});
+  const message = document.createElement("p");
+message.textContent = "カードからのメッセージ：" +
+  (card.message || "未登録");
+  const advice = document.createElement("p");
+advice.textContent = "実生活へのアドバイス：" +
+  (card.advice || "未登録");
+  const learningTip = document.createElement("p");
+learningTip.textContent = "初心者向け学習ポイント：" +
+  (card.learningTip || "未登録");
   cardGuideDetail.appendChild(heading);
   cardGuideDetail.appendChild(image);
   cardGuideDetail.appendChild(keywords);
   cardGuideDetail.appendChild(meaning);
+  cardGuideDetail.appendChild(symbolism);
+  cardGuideDetail.appendChild(readings);
+  cardGuideDetail.appendChild(message);
+  cardGuideDetail.appendChild(advice);
+  cardGuideDetail.appendChild(learningTip);
   const backButton = document.createElement("button");
 backButton.type = "button";
 backButton.className = "secondary";

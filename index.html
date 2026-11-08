@@ -213,6 +213,29 @@ learningTip.textContent = "初心者向け学習ポイント：" +
   cardGuideDetail.appendChild(message);
   cardGuideDetail.appendChild(advice);
   cardGuideDetail.appendChild(learningTip);
+  const relatedSection = document.createElement("div");
+
+const relatedTitle = document.createElement("h4");
+relatedTitle.textContent = "関連カード";
+relatedSection.appendChild(relatedTitle);
+
+const relatedIds = Array.isArray(card.relatedCards)
+  ? card.relatedCards
+  : [];
+
+relatedIds.forEach((relatedId) => {
+  const relatedCard = CARD_GUIDE_DATA.find(
+    (item) => item.id === relatedId
+  );
+
+  if (!relatedCard) return;
+
+  const relatedName = document.createElement("p");
+  relatedName.textContent = relatedCard.name;
+
+  relatedSection.appendChild(relatedName);
+});
+  cardGuideDetail.appendChild(relatedSection);
   const backButton = document.createElement("button");
 backButton.type = "button";
 backButton.className = "secondary";

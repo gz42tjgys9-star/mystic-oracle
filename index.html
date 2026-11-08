@@ -147,7 +147,52 @@ cardGuideClose.addEventListener("click", () => {
 
 /* Ver.1.1: Card Guide basic list */
 const cardGuideList = document.getElementById("cardGuideList");
+const cardGuideDetail = document.getElementById("cardGuideDetail");
+function renderCardGuideDetail(card) {
+  if (!cardGuideDetail || !cardGuideList) return;
 
+  cardGuideDetail.replaceChildren();
+
+  const heading = document.createElement("h3");
+  heading.textContent = card.name;
+
+  const image = document.createElement("img");
+  image.src = card.image;
+  image.alt = card.name + "のカード画像";
+  image.style.display = "block";
+  image.style.width = "180px";
+  image.style.maxWidth = "100%";
+  image.style.height = "auto";
+  image.style.margin = "16px auto";
+
+  const keywords = document.createElement("p");
+  keywords.textContent = "キーワード：" +
+    (Array.isArray(card.keywords)
+      ? card.keywords.join("・")
+      : card.keywords || "未登録");
+
+  const meaning = document.createElement("p");
+  meaning.textContent = "カードの意味：" +
+    (card.meaning || "未登録");
+
+  cardGuideDetail.appendChild(heading);
+  cardGuideDetail.appendChild(image);
+  cardGuideDetail.appendChild(keywords);
+  cardGuideDetail.appendChild(meaning);
+  const backButton = document.createElement("button");
+backButton.type = "button";
+backButton.className = "secondary";
+backButton.textContent = "← カード一覧へ戻る";
+
+backButton.addEventListener("click", () => {
+  cardGuideDetail.hidden = true;
+  cardGuideList.hidden = false;
+});
+
+cardGuideDetail.appendChild(backButton);
+  cardGuideList.hidden = true;
+  cardGuideDetail.hidden = false;
+}
 function renderCardGuideList() {
   if (!cardGuideList) return;
 
@@ -165,7 +210,9 @@ function renderCardGuideList() {
   CARD_GUIDE_DATA.forEach((card) => {
     const item = document.createElement("div");
     item.className = "card-guide-item";
-
+    item.addEventListener("click", () => {
+    renderCardGuideDetail(card);
+    });
     const typeLabel =
       card.type === "tarot" ? "タロット" : "オラクル";
 

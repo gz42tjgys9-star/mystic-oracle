@@ -118,6 +118,31 @@
 let currentFortuneMode = "tarot";
 const tarotModeButton = document.getElementById("tarotMode");
 const oracleModeButton = document.getElementById("oracleMode");
+
+/* Ver.1.1: Card Guide open / close */
+const cardGuideButton = document.getElementById("cardGuideButton");
+const cardGuideScreen = document.getElementById("cardGuideScreen");
+const cardGuideClose = document.getElementById("cardGuideClose");
+
+cardGuideButton.addEventListener("click", () => {
+  cardGuideScreen.hidden = false;
+  cardGuideButton.setAttribute("aria-expanded", "true");
+  cardGuideScreen.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+cardGuideClose.addEventListener("click", () => {
+  cardGuideScreen.hidden = true;
+  cardGuideButton.setAttribute("aria-expanded", "false");
+  cardGuideButton.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+  cardGuideButton.focus();
+});
+
 function setFortuneMode(mode) {
   currentFortuneMode = mode;
   const isTarot = mode === "tarot";

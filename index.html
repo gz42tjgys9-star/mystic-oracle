@@ -235,7 +235,9 @@ relatedIds.forEach((relatedId) => {
 
   relatedSection.appendChild(relatedName);
 });
+  if (relatedSection.children.length > 1) {
   cardGuideDetail.appendChild(relatedSection);
+}
   const backButton = document.createElement("button");
 backButton.type = "button";
 backButton.className = "secondary";

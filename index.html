@@ -257,10 +257,16 @@ backButton.type = "button";
 backButton.className = "secondary";
 backButton.textContent = "← カード一覧へ戻る";
 
+
 backButton.addEventListener("click", () => {
   cardGuideDetail.hidden = true;
   cardGuideList.hidden = false;
+  cardGuideList.scrollIntoView({
+    behavior: "auto",
+    block: "start"
+  });
 });
+  
 
 cardGuideDetail.appendChild(backButton);
   cardGuideList.hidden = true;

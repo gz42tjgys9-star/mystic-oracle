@@ -290,6 +290,14 @@ backButton.addEventListener("click", () => {
 cardGuideDetail.appendChild(backButton);
   cardGuideList.hidden = true;
   cardGuideDetail.hidden = false;
+  
+requestAnimationFrame(() => {
+  cardGuideDetail.scrollIntoView({
+    behavior: "auto",
+    block: "start"
+  });
+});
+
 }
 function renderCardGuideList() {
   if (!cardGuideList) return;

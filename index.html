@@ -236,9 +236,15 @@ relatedButton.type = "button";
 relatedButton.className = "secondary";
 relatedButton.textContent = relatedCard.name;
 
+
 relatedButton.addEventListener("click", () => {
   renderCardGuideDetail(relatedCard);
+  cardGuideDetail.scrollIntoView({
+    behavior: "auto",
+    block: "start"
+  });
 });
+  
 
 relatedSection.appendChild(relatedButton);
   

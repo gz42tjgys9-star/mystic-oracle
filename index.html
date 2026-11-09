@@ -230,10 +230,18 @@ relatedIds.forEach((relatedId) => {
 
   if (!relatedCard) return;
 
-  const relatedName = document.createElement("p");
-  relatedName.textContent = relatedCard.name;
+  
+const relatedButton = document.createElement("button");
+relatedButton.type = "button";
+relatedButton.className = "secondary";
+relatedButton.textContent = relatedCard.name;
 
-  relatedSection.appendChild(relatedName);
+relatedButton.addEventListener("click", () => {
+  renderCardGuideDetail(relatedCard);
+});
+
+relatedSection.appendChild(relatedButton);
+  
 });
   if (relatedSection.children.length > 1) {
   cardGuideDetail.appendChild(relatedSection);

@@ -92,7 +92,26 @@
     タロット22枚・オラクル36枚の意味を学べる図鑑です。
   </p>
 
-  <div id="cardGuideControls"></div>
+ 
+<div id="cardGuideControls" role="group" aria-label="カード図鑑の表示形式">
+  <button
+    type="button"
+    id="cardGuideGridButton"
+    class="secondary active"
+    aria-pressed="true"
+  >
+    ▦ グリッド表示
+  </button>
+  <button
+    type="button"
+    id="cardGuideListButton"
+    class="secondary"
+    aria-pressed="false"
+  >
+    ☰ リスト表示
+  </button>
+</div>
+
 
   <div id="cardGuideList"></div>
 
@@ -329,6 +348,43 @@ item.appendChild(cardName);
 }
 
 renderCardGuideList();
+
+/* Ver.1.1 カード図鑑：グリッド／リスト表示切替 */
+const cardGuideGridButton =
+  document.getElementById("cardGuideGridButton");
+
+const cardGuideListButton =
+  document.getElementById("cardGuideListButton");
+
+function setCardGuideView(view) {
+  const isList = view === "list";
+
+  cardGuideList.classList.toggle("list-view", isList);
+
+  cardGuideGridButton.classList.toggle("active", !isList);
+  cardGuideListButton.classList.toggle("active", isList);
+
+  cardGuideGridButton.setAttribute(
+    "aria-pressed",
+    String(!isList)
+  );
+
+  cardGuideListButton.setAttribute(
+    "aria-pressed",
+    String(isList)
+  );
+}
+
+cardGuideGridButton.addEventListener("click", () => {
+  setCardGuideView("grid");
+});
+
+cardGuideListButton.addEventListener("click", () => {
+  setCardGuideView("list");
+});
+
+/* 初期表示はグリッド */
+setCardGuideView("grid");
 
 function setFortuneMode(mode) {
   currentFortuneMode = mode;
@@ -779,6 +835,56 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') {
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
+
+/* Ver.1.1 カード図鑑：表示切替ボタン */
+#cardGuideControls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 16px 0 20px;
+}
+
+#cardGuideControls button.active {
+  background: #6e4e92;
+  border-color: #efcb80;
+  color: #ffffff;
+}
+
+/* Ver.1.1 カード図鑑：リスト表示 */
+#cardGuideList.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#cardGuideList.list-view .card-guide-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  gap: 16px;
+  text-align: left;
+}
+
+#cardGuideList.list-view .card-guide-item img {
+  width: 70px !important;
+  max-width: 70px !important;
+  height: 105px !important;
+  object-fit: contain;
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+
+#cardGuideList.list-view .card-guide-name {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  justify-content: flex-start;
+  text-align: left !important;
+}
+  
 </style>
 <button id="backToTopBtn" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ トップへ戻る</button>
 

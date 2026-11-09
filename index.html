@@ -300,12 +300,15 @@ const cardImage = document.createElement("img");
 cardImage.src = card.image;
 cardImage.alt = `${card.name}のカード画像`;
 cardImage.loading = "lazy";
+
 cardImage.style.display = "block";
 cardImage.style.width = "120px";
 cardImage.style.maxWidth = "100%";
-cardImage.style.height = "auto";
+cardImage.style.height = "190px";
+cardImage.style.objectFit = "contain";
 cardImage.style.margin = "0 auto 10px";
 cardImage.style.borderRadius = "8px";
+
 
 const cardName = document.createElement("div");
 cardName.className = "card-guide-name";

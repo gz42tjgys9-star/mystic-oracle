@@ -261,10 +261,10 @@ backButton.textContent = "← カード一覧へ戻る";
 backButton.addEventListener("click", () => {
   cardGuideDetail.hidden = true;
   cardGuideList.hidden = false;
-  cardGuideList.scrollIntoView({
-    behavior: "auto",
-    block: "start"
-  });
+  cardGuideScreen.scrollIntoView({
+  behavior: "auto",
+  block: "start"
+　});
 });
   
 

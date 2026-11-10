@@ -92,7 +92,71 @@
     タロット22枚・オラクル36枚の意味を学べる図鑑です。
   </p>
 
- 
+
+<!-- Ver.1.1 カード図鑑：検索・分類 -->
+<div id="cardGuideSearchControls">
+
+  <label for="cardGuideSearchInput">
+    カードを検索
+  </label>
+
+  <input
+    type="search"
+    id="cardGuideSearchInput"
+    placeholder="カード名・キーワード・番号で検索"
+    autocomplete="off"
+  >
+
+  <button
+    type="button"
+    id="cardGuideSearchClear"
+    class="secondary"
+  >
+    検索をクリア
+  </button>
+
+  <div
+    id="cardGuideFilterControls"
+    role="group"
+    aria-label="カードの種類で絞り込む"
+  >
+    <button
+      type="button"
+      id="cardGuideFilterAll"
+      class="secondary active"
+      aria-pressed="true"
+    >
+      すべて
+    </button>
+
+    <button
+      type="button"
+      id="cardGuideFilterTarot"
+      class="secondary"
+      aria-pressed="false"
+    >
+      タロット
+    </button>
+
+    <button
+      type="button"
+      id="cardGuideFilterOracle"
+      class="secondary"
+      aria-pressed="false"
+    >
+      オラクル
+    </button>
+  </div>
+
+  <p
+    id="cardGuideSearchStatus"
+    class="hint"
+    role="status"
+    aria-live="polite"
+  ></p>
+
+</div>
+
 <div id="cardGuideControls" role="group" aria-label="カード図鑑の表示形式">
   <button
     type="button"
@@ -299,6 +363,94 @@ requestAnimationFrame(() => {
 });
 
 }
+
+/* Ver.1.1 カード図鑑：検索・分類の初期設定 */
+
+const cardGuideSearchInput =
+  document.getElementById("cardGuideSearchInput");
+
+const cardGuideSearchClear =
+  document.getElementById("cardGuideSearchClear");
+
+const cardGuideFilterAll =
+  document.getElementById("cardGuideFilterAll");
+
+const cardGuideFilterTarot =
+  document.getElementById("cardGuideFilterTarot");
+
+const cardGuideFilterOracle =
+  document.getElementById("cardGuideFilterOracle");
+
+const cardGuideSearchStatus =
+  document.getElementById("cardGuideSearchStatus");
+
+/* 現在の検索・分類状態 */
+let cardGuideSearchText = "";
+let cardGuideFilterType = "all";
+
+/* 分類ボタンの選択状態を更新 */
+function updateCardGuideFilterButtons() {
+  const buttons = [
+    [cardGuideFilterAll, "all"],
+    [cardGuideFilterTarot, "tarot"],
+    [cardGuideFilterOracle, "oracle"]
+  ];
+
+  buttons.forEach(([button, type]) => {
+    if (!button) return;
+
+    const isActive = cardGuideFilterType === type;
+
+    button.classList.toggle("active", isActive);
+    button.setAttribute(
+      "aria-pressed",
+      String(isActive)
+    );
+  });
+}
+
+/* Ver.1.1 カード図鑑：検索・分類判定 */
+
+function matchesCardGuideSearch(card) {
+  const selectedType = cardGuideFilterType;
+
+  if (
+    selectedType !== "all" &&
+    card.type !== selectedType
+  ) {
+    return false;
+  }
+
+  const query = cardGuideSearchText
+    .normalize("NFKC")
+    .trim()
+    .toLowerCase();
+
+  if (!query) {
+    return true;
+  }
+
+  const keywordText = Array.isArray(card.keywords)
+    ? card.keywords.join(" ")
+    : String(card.keywords ?? "");
+
+  const numberText = String(
+    card.number ?? card.id ?? ""
+  );
+
+  const searchTarget = [
+    card.name,
+    keywordText,
+    numberText
+  ]
+    .map(value => String(value ?? ""))
+    .join(" ")
+    .normalize("NFKC")
+    .toLowerCase();
+
+  return searchTarget.includes(query);
+}
+
 function renderCardGuideList() {
   if (!cardGuideList) return;
 
@@ -354,6 +506,63 @@ item.appendChild(cardName);
     cardGuideList.appendChild(item);
   });
 }
+
+/* Ver.1.1 カード図鑑：検索入力イベント */
+
+if (cardGuideSearchInput) {
+  cardGuideSearchInput.addEventListener("input", () => {
+    cardGuideSearchText =
+      cardGuideSearchInput.value;
+
+    renderCardGuideList();
+  });
+}
+
+/* 検索文字列のクリア */
+
+if (cardGuideSearchClear) {
+  cardGuideSearchClear.addEventListener("click", () => {
+    cardGuideSearchText = "";
+
+    if (cardGuideSearchInput) {
+      cardGuideSearchInput.value = "";
+      cardGuideSearchInput.focus();
+    }
+
+    renderCardGuideList();
+  });
+}
+
+/* Ver.1.1 カード図鑑：分類ボタンのイベント */
+
+function setCardGuideFilter(type) {
+  cardGuideFilterType = type;
+
+  updateCardGuideFilterButtons();
+  renderCardGuideList();
+}
+
+if (cardGuideFilterAll) {
+  cardGuideFilterAll.addEventListener("click", () => {
+    setCardGuideFilter("all");
+  });
+}
+
+if (cardGuideFilterTarot) {
+  cardGuideFilterTarot.addEventListener("click", () => {
+    setCardGuideFilter("tarot");
+  });
+}
+
+if (cardGuideFilterOracle) {
+  cardGuideFilterOracle.addEventListener("click", () => {
+    setCardGuideFilter("oracle");
+  });
+}
+
+/* 初期状態：すべてのカードを表示 */
+
+updateCardGuideFilterButtons();
 
 renderCardGuideList();
 
@@ -891,6 +1100,74 @@ if ('serviceWorker' in navigator && location.protocol === 'https:') {
   min-height: 0;
   justify-content: flex-start;
   text-align: left !important;
+}
+
+/* Ver.1.1 カード図鑑：検索・分類UI */
+
+#cardGuideSearchControls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 18px 0;
+}
+
+#cardGuideSearchControls label {
+  font-weight: bold;
+}
+
+#cardGuideSearchInput {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+#cardGuideSearchClear {
+  align-self: flex-start;
+}
+
+#cardGuideFilterControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#cardGuideFilterControls button {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+#cardGuideFilterControls button.active {
+  border: 2px solid #d9b7ff;
+  font-weight: bold;
+}
+
+#cardGuideSearchStatus {
+  margin: 0;
+  min-height: 1.5em;
+}
+
+/* スマートフォン向け調整 */
+
+@media (max-width: 480px) {
+  #cardGuideSearchControls {
+    gap: 10px;
+  }
+
+  #cardGuideFilterControls {
+    gap: 6px;
+  }
+
+  #cardGuideFilterControls button {
+    padding: 10px 6px;
+    font-size: 14px;
+  }
+
+  #cardGuideSearchClear {
+    width: 100%;
+  }
 }
   
 </style>

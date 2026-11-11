@@ -465,7 +465,22 @@ function renderCardGuideList() {
     return;
   }
 
-  CARD_GUIDE_DATA.forEach((card) => {
+  
+const filteredCards = CARD_GUIDE_DATA.filter(matchesCardGuideSearch);
+
+if (cardGuideSearchStatus) {
+  cardGuideSearchStatus.textContent =
+    `検索結果：${filteredCards.length}枚`;
+}
+
+if (filteredCards.length === 0) {
+  const emptyMessage = document.createElement("p");
+  emptyMessage.textContent = "該当するカードがありません";
+  cardGuideList.appendChild(emptyMessage);
+}
+
+filteredCards.forEach((card) => {
+
     const item = document.createElement("div");
     item.className = "card-guide-item";
     item.addEventListener("click", () => {

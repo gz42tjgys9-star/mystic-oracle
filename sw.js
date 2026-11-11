@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'mystic-oracle-v10-release-1';
+const CACHE_NAME = 'mystic-oracle-v11-guide-1';
 
 const CARD_NAMES = [
   '00_fool.png',
@@ -30,6 +30,7 @@ const OFFLINE_FILES = [
   './',
   './index.html',
   './oracle-data.js',
+  './card-guide-data.js',
   './manifest.webmanifest',
   './icon-192.png',
   './icon-512.png',

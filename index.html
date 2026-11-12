@@ -71,7 +71,159 @@
 .fortune-switch button:focus-visible {
   outline: 2px solid #e0c8ff;
   outline-offset: 3px;
-}</style></head><body><main class="shell"><div class="top" aria-hidden="true">☾ ✦ ☽</div><h1>Mystic Oracle</h1><p class="sub">月夜のタロット — 大アルカナ22枚</p><div class="fortune-switch" role="group" aria-label="占いの種類を選択">
+}
+  /* Ver.1.1 カード図鑑：レスポンシブレイアウト */
+#cardGuideList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+#cardGuideList .card-guide-item {
+  min-width: 0;
+  box-sizing: border-box;
+  margin-bottom: 0 !important;
+}
+
+@media (min-width: 900px) {
+  #cardGuideList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+/* Ver.1.1 カード図鑑：カード名と枠の高さを統一 */
+#cardGuideList .card-guide-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#cardGuideList .card-guide-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.6em;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+/* Ver.1.1 カード図鑑：表示切替ボタン */
+#cardGuideControls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 16px 0 20px;
+}
+
+#cardGuideControls button.active {
+  background: #6e4e92;
+  border-color: #efcb80;
+  color: #ffffff;
+}
+
+/* Ver.1.1 カード図鑑：リスト表示 */
+#cardGuideList.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#cardGuideList.list-view .card-guide-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  gap: 16px;
+  text-align: left;
+}
+
+#cardGuideList.list-view .card-guide-item img {
+  width: 70px !important;
+  max-width: 70px !important;
+  height: 105px !important;
+  object-fit: contain;
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+
+#cardGuideList.list-view .card-guide-name {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  justify-content: flex-start;
+  text-align: left !important;
+}
+
+/* Ver.1.1 カード図鑑：検索・分類UI */
+
+#cardGuideSearchControls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 18px 0;
+}
+
+#cardGuideSearchControls label {
+  font-weight: bold;
+}
+
+#cardGuideSearchInput {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+#cardGuideSearchClear {
+  align-self: flex-start;
+}
+
+#cardGuideFilterControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#cardGuideFilterControls button {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+#cardGuideFilterControls button.active {
+  border: 2px solid #d9b7ff;
+  font-weight: bold;
+}
+
+#cardGuideSearchStatus {
+  margin: 0;
+  min-height: 1.5em;
+}
+
+/* スマートフォン向け調整 */
+
+@media (max-width: 480px) {
+  #cardGuideSearchControls {
+    gap: 10px;
+  }
+
+  #cardGuideFilterControls {
+    gap: 6px;
+  }
+
+  #cardGuideFilterControls button {
+    padding: 10px 6px;
+    font-size: 14px;
+  }
+
+  #cardGuideSearchClear {
+    width: 100%;
+  }
+}
+</style></head><body><main class="shell"><div class="top" aria-hidden="true">☾ ✦ ☽</div><h1>Mystic Oracle</h1><p class="sub">月夜のタロット — 大アルカナ22枚</p><div class="fortune-switch" role="group" aria-label="占いの種類を選択">
   <button type="button" id="tarotMode" class="active" aria-pressed="true">☾ タロット占い</button>
   <button type="button" id="oracleMode" aria-pressed="false">✦ オラクル占い</button>
 </div><div class="card-guide-entry">

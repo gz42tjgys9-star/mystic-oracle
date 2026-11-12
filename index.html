@@ -351,6 +351,420 @@
 let currentFortuneMode = "tarot";
 const tarotModeButton = document.getElementById("tarotMode");
 const oracleModeButton = document.getElementById("oracleMode");
+/* Ver.1.1: Card Guide open / close */
+const cardGuideButton = document.getElementById("cardGuideButton");
+const cardGuideScreen = document.getElementById("cardGuideScreen");
+const cardGuideClose = document.getElementById("cardGuideClose");
+
+cardGuideButton.addEventListener("click", () => {
+  cardGuideScreen.hidden = false;
+  cardGuideButton.setAttribute("aria-expanded", "true");
+  cardGuideScreen.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+});
+
+cardGuideClose.addEventListener("click", () => {
+  cardGuideScreen.hidden = true;
+  cardGuideButton.setAttribute("aria-expanded", "false");
+  cardGuideButton.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+  cardGuideButton.focus();
+});
+
+/* Ver.1.1: Card Guide basic list */
+const cardGuideList = document.getElementById("cardGuideList");
+const cardGuideDetail = document.getElementById("cardGuideDetail");
+function renderCardGuideDetail(card) {
+  if (!cardGuideDetail || !cardGuideList) return;
+
+  cardGuideDetail.replaceChildren();
+
+  const heading = document.createElement("h3");
+  heading.textContent = card.name;
+
+  const image = document.createElement("img");
+  image.src = card.image;
+  image.alt = card.name + "のカード画像";
+  image.style.display = "block";
+  image.style.width = "180px";
+  image.style.maxWidth = "100%";
+  image.style.height = "auto";
+  image.style.margin = "16px auto";
+
+  const keywords = document.createElement("p");
+  keywords.textContent = "キーワード：" +
+    (Array.isArray(card.keywords)
+      ? card.keywords.join("・")
+      : card.keywords || "未登録");
+
+  const meaning = document.createElement("p");
+  meaning.textContent = "カードの意味：" +
+    (card.meaning || "未登録");
+  const symbolism = document.createElement("p");
+symbolism.textContent = "カードの象徴・絵柄の意味：" +
+  (card.symbolism || "未登録");
+  const readings = document.createElement("div");
+const readingData = card.readings || {};
+
+const readingTitle = document.createElement("h4");
+readingTitle.textContent = "鑑定テーマ別の解釈";
+readings.appendChild(readingTitle);
+
+const readingItems = [
+  ["総合運", readingData.general],
+  ["恋愛運", readingData.love],
+  ["仕事運", readingData.work]
+];
+
+readingItems.forEach(([label, description]) => {
+  const paragraph = document.createElement("p");
+  paragraph.textContent = label + "：" + (description || "未登録");
+  readings.appendChild(paragraph);
+});
+  const message = document.createElement("p");
+message.textContent = "カードからのメッセージ：" +
+  (card.message || "未登録");
+  const advice = document.createElement("p");
+advice.textContent = "実生活へのアドバイス：" +
+  (card.advice || "未登録");
+  const learningTip = document.createElement("p");
+learningTip.textContent = "初心者向け学習ポイント：" +
+  (card.learningTip || "未登録");
+  cardGuideDetail.appendChild(heading);
+  cardGuideDetail.appendChild(image);
+  cardGuideDetail.appendChild(keywords);
+  cardGuideDetail.appendChild(meaning);
+  cardGuideDetail.appendChild(symbolism);
+  cardGuideDetail.appendChild(readings);
+  cardGuideDetail.appendChild(message);
+  cardGuideDetail.appendChild(advice);
+  cardGuideDetail.appendChild(learningTip);
+  const relatedSection = document.createElement("div");
+
+const relatedTitle = document.createElement("h4");
+relatedTitle.textContent = "関連カード";
+relatedSection.appendChild(relatedTitle);
+
+const relatedIds = Array.isArray(card.relatedCards)
+  ? card.relatedCards
+  : [];
+
+relatedIds.forEach((relatedId) => {
+  const relatedCard = CARD_GUIDE_DATA.find(
+    (item) => item.id === relatedId
+  );
+
+  if (!relatedCard) return;
+
+  
+const relatedButton = document.createElement("button");
+relatedButton.type = "button";
+relatedButton.className = "secondary";
+relatedButton.textContent = relatedCard.name;
+
+
+relatedButton.addEventListener("click", () => {
+  renderCardGuideDetail(relatedCard);
+  cardGuideDetail.scrollIntoView({
+    behavior: "auto",
+    block: "start"
+  });
+});
+  
+
+relatedSection.appendChild(relatedButton);
+  
+});
+  if (relatedSection.children.length > 1) {
+  cardGuideDetail.appendChild(relatedSection);
+}
+  const backButton = document.createElement("button");
+backButton.type = "button";
+backButton.className = "secondary";
+backButton.textContent = "← カード一覧へ戻る";
+
+
+backButton.addEventListener("click", () => {
+  cardGuideDetail.hidden = true;
+  cardGuideList.hidden = false;
+  cardGuideScreen.scrollIntoView({
+    behavior: "auto",
+    block: "start"
+  });
+});
+  
+
+cardGuideDetail.appendChild(backButton);
+  cardGuideList.hidden = true;
+  cardGuideDetail.hidden = false;
+  
+requestAnimationFrame(() => {
+  cardGuideDetail.scrollIntoView({
+    behavior: "auto",
+    block: "start"
+  });
+});
+
+}
+
+/* Ver.1.1 カード図鑑：検索・分類の初期設定 */
+
+const cardGuideSearchInput =
+  document.getElementById("cardGuideSearchInput");
+
+const cardGuideSearchClear =
+  document.getElementById("cardGuideSearchClear");
+
+const cardGuideFilterAll =
+  document.getElementById("cardGuideFilterAll");
+
+const cardGuideFilterTarot =
+  document.getElementById("cardGuideFilterTarot");
+
+const cardGuideFilterOracle =
+  document.getElementById("cardGuideFilterOracle");
+
+const cardGuideSearchStatus =
+  document.getElementById("cardGuideSearchStatus");
+
+/* 現在の検索・分類状態 */
+let cardGuideSearchText = "";
+let cardGuideFilterType = "all";
+
+/* 分類ボタンの選択状態を更新 */
+function updateCardGuideFilterButtons() {
+  const buttons = [
+    [cardGuideFilterAll, "all"],
+    [cardGuideFilterTarot, "tarot"],
+    [cardGuideFilterOracle, "oracle"]
+  ];
+
+  buttons.forEach(([button, type]) => {
+    if (!button) return;
+
+    const isActive = cardGuideFilterType === type;
+
+    button.classList.toggle("active", isActive);
+    button.setAttribute(
+      "aria-pressed",
+      String(isActive)
+    );
+  });
+}
+
+/* Ver.1.1 カード図鑑：検索・分類判定 */
+
+function matchesCardGuideSearch(card) {
+  const selectedType = cardGuideFilterType;
+
+  if (
+    selectedType !== "all" &&
+    card.type !== selectedType
+  ) {
+    return false;
+  }
+
+  const query = cardGuideSearchText
+    .normalize("NFKC")
+    .trim()
+    .toLowerCase();
+
+  if (!query) {
+    return true;
+  }
+
+  const keywordText = Array.isArray(card.keywords)
+    ? card.keywords.join(" ")
+    : String(card.keywords ?? "");
+
+  const numberText = String(
+    card.number ?? card.id ?? ""
+  );
+
+  const searchTarget = [
+    card.name,
+    keywordText,
+    numberText
+  ]
+    .map(value => String(value ?? ""))
+    .join(" ")
+    .normalize("NFKC")
+    .toLowerCase();
+
+  return searchTarget.includes(query);
+}
+
+function renderCardGuideList() {
+  if (!cardGuideList) return;
+
+  cardGuideList.replaceChildren();
+
+  if (
+    typeof CARD_GUIDE_DATA === "undefined" ||
+    !Array.isArray(CARD_GUIDE_DATA)
+  ) {
+    cardGuideList.textContent =
+      "カード図鑑のデータを読み込めませんでした。";
+    return;
+  }
+
+  
+const filteredCards = CARD_GUIDE_DATA.filter(matchesCardGuideSearch);
+
+if (cardGuideSearchStatus) {
+  cardGuideSearchStatus.textContent =
+    `検索結果：${filteredCards.length}枚`;
+}
+
+if (filteredCards.length === 0) {
+  const emptyMessage = document.createElement("p");
+  emptyMessage.textContent = "該当するカードがありません";
+  cardGuideList.appendChild(emptyMessage);
+}
+
+filteredCards.forEach((card) => {
+
+    const item = document.createElement("div");
+    item.className = "card-guide-item";
+    item.addEventListener("click", () => {
+    renderCardGuideDetail(card);
+    });
+    const typeLabel =
+      card.type === "tarot" ? "タロット" : "オラクル";
+
+    
+const cardImage = document.createElement("img");
+cardImage.src = card.image;
+cardImage.alt = `${card.name}のカード画像`;
+cardImage.loading = "lazy";
+
+cardImage.style.display = "block";
+cardImage.style.width = "120px";
+cardImage.style.maxWidth = "100%";
+cardImage.style.height = "190px";
+cardImage.style.objectFit = "contain";
+cardImage.style.margin = "0 auto 10px";
+cardImage.style.borderRadius = "8px";
+
+
+const cardName = document.createElement("div");
+cardName.className = "card-guide-name";
+cardName.textContent = `${typeLabel}｜${card.name}`;
+cardName.style.textAlign = "center";
+cardName.style.fontWeight = "bold";
+
+item.appendChild(cardImage);
+item.appendChild(cardName);
+
+    item.style.padding = "12px";
+    item.style.marginBottom = "8px";
+    item.style.border = "1px solid #8c72aa";
+    item.style.borderRadius = "10px";
+
+    cardGuideList.appendChild(item);
+  });
+}
+
+/* Ver.1.1 カード図鑑：検索入力イベント */
+
+if (cardGuideSearchInput) {
+  cardGuideSearchInput.addEventListener("input", () => {
+    cardGuideSearchText =
+      cardGuideSearchInput.value;
+
+    renderCardGuideList();
+  });
+}
+
+/* 検索文字列のクリア */
+
+if (cardGuideSearchClear) {
+  cardGuideSearchClear.addEventListener("click", () => {
+    cardGuideSearchText = "";
+
+    if (cardGuideSearchInput) {
+      cardGuideSearchInput.value = "";
+      cardGuideSearchInput.focus();
+    }
+
+    renderCardGuideList();
+  });
+}
+
+/* Ver.1.1 カード図鑑：分類ボタンのイベント */
+
+function setCardGuideFilter(type) {
+  cardGuideFilterType = type;
+
+  updateCardGuideFilterButtons();
+  renderCardGuideList();
+}
+
+if (cardGuideFilterAll) {
+  cardGuideFilterAll.addEventListener("click", () => {
+    setCardGuideFilter("all");
+  });
+}
+
+if (cardGuideFilterTarot) {
+  cardGuideFilterTarot.addEventListener("click", () => {
+    setCardGuideFilter("tarot");
+  });
+}
+
+if (cardGuideFilterOracle) {
+  cardGuideFilterOracle.addEventListener("click", () => {
+    setCardGuideFilter("oracle");
+  });
+}
+
+/* 初期状態：すべてのカードを表示 */
+
+updateCardGuideFilterButtons();
+
+renderCardGuideList();
+
+/* Ver.1.1 カード図鑑：グリッド／リスト表示切替 */
+const cardGuideGridButton =
+  document.getElementById("cardGuideGridButton");
+
+const cardGuideListButton =
+  document.getElementById("cardGuideListButton");
+
+function setCardGuideView(view) {
+  const isList = view === "list";
+
+  cardGuideList.classList.toggle("list-view", isList);
+
+  cardGuideGridButton.classList.toggle("active", !isList);
+  cardGuideListButton.classList.toggle("active", isList);
+
+  cardGuideGridButton.setAttribute(
+    "aria-pressed",
+    String(!isList)
+  );
+
+  cardGuideListButton.setAttribute(
+    "aria-pressed",
+    String(isList)
+  );
+}
+
+cardGuideGridButton.addEventListener("click", () => {
+  setCardGuideView("grid");
+});
+
+cardGuideListButton.addEventListener("click", () => {
+  setCardGuideView("list");
+});
+
+/* 初期表示はグリッド */
+setCardGuideView("grid");
+
 function setFortuneMode(mode) {
   currentFortuneMode = mode;
   const isTarot = mode === "tarot";
